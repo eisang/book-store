@@ -26,13 +26,13 @@ class App extends Component {
       alert(e);
     }
   };
-  bookItem = () => this.state.books.filter(book => book.inCart);
+  bookItems = () => this.state.books.filter(book => book.inCart);
 
   addBook = id => {
     axios.patch(`http://localhost:8000/books/cart/add/${id}`).then(res => {
       const individualBooks = this.state.books.filter(book => book.id !== id);
       this.setState({
-        books: [...individualBooks, res.data]
+        books: [...individualBooks, res.data[0]]
       });
     });
   };
@@ -41,23 +41,24 @@ class App extends Component {
     axios.patch(`http://localhost:8000/books/cart/remove/${id}`).then(res => {
       const individualBooks = this.state.books.filter(book => book.id !== id);
       this.setState({
-        books: [...individualBooks, res.data]
+        books: [...individualBooks, res.data[0]]
       });
     });
   };
 
   render() {
+    // console.log("this", this);
     return (
       <div className="App">
         <HeaderNav name="here" />
         <div className="row">
           <div className="col-7">
-            <BookCollection books={this.state.books} addBook={this.addBook} />
+            <BookCollection book={this.state.books} addBook={this.addBook} />
           </div>
-          <div className="col-5">
+          <div className="col-5 bg-warning">
             <CheckoutCart
               removeBook={this.removeBook}
-              bookItem={this.bookItem()}
+              bookItems={this.bookItems()}
             />
           </div>
         </div>

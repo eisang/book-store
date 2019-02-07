@@ -5,10 +5,15 @@ export default class Book extends Component {
     // const { title, description } = this.props.books;
     return (
       <div>
-        {/* <span>title:{this.props.books.title}</span> */}
-        <button onClick={() => this.props.addBook(this.props.book.id)}>
-          Add Book
-        </button>
+        <p>
+          Title: {this.props.book.title}
+          <button
+            className="bg-primary"
+            onClick={() => this.props.addBook(this.props.book.id)}
+          >
+            Add book
+          </button>
+        </p>
       </div>
     );
   }

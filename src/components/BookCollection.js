@@ -15,8 +15,11 @@ export default class BookCollection extends Component {
   };
 
   render() {
-    const checkoutList = this.props.books
-      .filter(book => book[this.state.type].includes(this.state.searchCriteria))
+    const checkoutList = this.props.book
+      .filter(book => {
+        console.log("this", this.state.type, book);
+        return book[this.state.type].includes(this.state.searchCriteria);
+      })
       .map(book => (
         <Book key={book.id} book={book} addBook={this.props.addBook} />
       ));
@@ -24,6 +27,7 @@ export default class BookCollection extends Component {
       <div>
         <form>
           <input
+            style={{ marginLeft: "5px" }}
             type="text"
             placeholder="search"
             onChange={this.handleChange}
@@ -31,10 +35,14 @@ export default class BookCollection extends Component {
             name="searchCriteria"
           />
           <select
+            style={{ marginLeft: "30px", marginBottom: "25px" }}
             name="type"
             onchange={this.handleChange}
             value={this.state.type}
-          />
+          >
+            <option value="author">Author</option>
+            <option value="description">Description</option>
+          </select>
         </form>
 
         {checkoutList}
