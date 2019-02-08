@@ -37,7 +37,7 @@ export default class BookCollection extends Component {
           <select
             style={{ marginLeft: "30px", marginBottom: "25px" }}
             name="type"
-            onchange={this.handleChange}
+            onChange={this.handleChange}
             value={this.state.type}
           >
             <option value="author">Author</option>
