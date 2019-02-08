@@ -40,8 +40,7 @@ export default class BookCollection extends Component {
             onChange={this.handleChange}
             value={this.state.type}
           >
-            <option value="author">Author</option>
-            <option value="description">Description</option>
+            <option value="title">Title</option>
           </select>
         </form>
 

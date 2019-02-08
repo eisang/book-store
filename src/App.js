@@ -32,7 +32,7 @@ class App extends Component {
     axios.patch(`http://localhost:8000/books/cart/add/${id}`).then(res => {
       const individualBooks = this.state.books.filter(book => book.id !== id);
       this.setState({
-        books: [...individualBooks, res.data[0]]
+        books: [...individualBooks, ...res.data]
       });
     });
   };
@@ -41,19 +41,21 @@ class App extends Component {
     axios.patch(`http://localhost:8000/books/cart/remove/${id}`).then(res => {
       const individualBooks = this.state.books.filter(book => book.id !== id);
       this.setState({
-        books: [...individualBooks, res.data[0]]
+        books: [...individualBooks, ...res.data]
       });
     });
   };
 
   render() {
-    // console.log("this", this);
     return (
       <div className="App">
         <HeaderNav name="here" />
         <div className="row">
           <div className="col-7">
-            <BookCollection book={this.state.books} addBook={this.addBook} />
+            <BookCollection
+              book={this.state.books.filter(book => book.inCart !== true)}
+              addBook={this.addBook}
+            />
           </div>
           <div className="col-5 bg-warning">
             <CheckoutCart

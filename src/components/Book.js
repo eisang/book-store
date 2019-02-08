@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 export default class Book extends Component {
   render() {
-    // const { title, description } = this.props.books;
     return (
       <div>
         <p>
