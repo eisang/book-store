@@ -41,6 +41,7 @@ export default class BookCollection extends Component {
             value={this.state.type}
           >
             <option value="title">Title</option>
+            <option value="author">Author</option>
           </select>
         </form>
 

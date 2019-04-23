@@ -26,6 +26,7 @@ class App extends Component {
       alert(e);
     }
   };
+
   bookItems = () => this.state.books.filter(book => book.inCart);
 
   addBook = id => {
